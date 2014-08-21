@@ -1,0 +1,7 @@
+if configValues['server']['packages'].is_a?(Array)
+  configValues['server']['packages'].each do |package|
+    if package == 'samba'
+      config.vm.provision :shell, :path => 'puphpet/shell/samba-share.sh'
+    end
+  end
+end
