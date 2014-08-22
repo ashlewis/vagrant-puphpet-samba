@@ -31,8 +31,10 @@ elif [[ "${OS}" == 'centos' ]]; then
     chkconfig ip6tables off
 fi
 
-echo 'Adding Samba config'
-printf "[www]\n    comment = Samba share\n    read only = no\n    browseable = yes\n    writable = yes\n    guest ok = yes\n    path = /var/www" >> /etc/samba/smb.conf
+if ! grep -R "\[www\]" "/etc/samba/smb.conf"; then
+    echo 'Adding Samba config'
+    printf "[www]\n    comment = Samba share\n    read only = no\n    browseable = yes\n    writable = yes\n    guest ok = yes\n    path = /var/www" >> /etc/samba/smb.conf
+fi
 
 echo 'Adding Samba user/password'
 (echo "vagrant"; echo "vagrant") | smbpasswd -s -a vagrant
