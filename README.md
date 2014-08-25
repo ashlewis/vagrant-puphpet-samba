@@ -2,6 +2,7 @@
 Vagrant shell scripts to set up samba share between guest webroot and host
 
 The scripts can be run by vagrant using ONE of the 2 following methods:
+
 1. Using PuPHPet provisioning files directories (recommended)
 1. Adding to scripts directory and editing Vagrantfile  
 
