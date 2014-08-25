@@ -1,7 +1,17 @@
+# if NOT using puphpet specific exec-once/startup-always directories, add this to end of Vagrantfile (before closing "end")
+
 if configValues['server']['packages'].is_a?(Array)
-  configValues['server']['packages'].each do |package|
-    if package == 'samba'
-      config.vm.provision :shell, :path => 'puphpet/shell/samba-share.sh'
+
+    configValues['server']['packages'].each do |package|
+
+      if package == 'samba'
+
+        config.vm.provision :shell, :path => 'puphpet/shell/samba-share.sh'
+
+        config.vm.provision :shell, run: 'always' do |s|
+          s.path = 'puphpet/shell/samba-start.sh'
+        end
+
+      end
     end
   end
-end
