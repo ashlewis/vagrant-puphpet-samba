@@ -24,5 +24,5 @@ echo 'Adding Samba user/password'
 (echo "vagrant"; echo "vagrant") | smbpasswd -s -a vagrant
 
 echo 'Setting share directory permissions'
-chown vagrant /var/www/ -R
+chown vagrant:www-data /var/www/ -R
 chmod 755 /var/www/ -R
